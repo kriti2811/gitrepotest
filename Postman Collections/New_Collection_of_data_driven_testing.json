@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "039c06a4-a274-4773-b4c1-2725e65f35fe",
+		"name": "Data-Driven-Testing Using CSV file having multiple requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User using external file as CSV file",
+			"_postman_id": "acbdf2b0-e94e-413b-b7c2-f45ac53e4944",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"job\": \"{{job}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{Endpoint}}/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Detail_All_Users_Page_2 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "05d1957e-7323-47f7-9648-9d0787b12507",
+						"exec": [
+							"// Http status code as 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verify Content-type is Present\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"// Verify Http status message as OK\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "4981e725-1fec-4522-ab56-766b17bc85a7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Endpoint}}/api/users?page={{page}}",
+					"host": [
+						"{{Endpoint}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "{{page}}",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
